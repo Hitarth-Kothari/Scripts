@@ -93,9 +93,10 @@ def display_table_and_summary(ranked_items, total_size):
 
 def main():
     """
-    Main function to handle the ranking and dive-in functionality.
+    Main function to handle the ranking, dive-in, and backtrack functionality.
     """
     directory_path = input("Enter the directory path: ").strip()
+    history = [directory_path]  # Keeps track of the navigation history
     
     while True:
         ranked_items, total_files = rank_files_and_folders_by_size(directory_path)
@@ -104,14 +105,15 @@ def main():
             total_size = sum(item[2] for item in ranked_items)
             display_table_and_summary(ranked_items, total_size)
             
-            # Ask if the user wants to dive deeper
-            dive_in = input("\nDo you wish to dive deeper into a folder? (y/n): ").strip().lower()
-            if dive_in == "y":
+            # Ask if the user wants to dive deeper or backtrack
+            dive_in = input("\nDo you wish to dive deeper into a folder, backtrack, or exit? (d/b/e): ").strip().lower()
+            if dive_in == "d":
                 try:
                     rank = int(input("Enter the rank of the folder to dive into: ").strip())
                     if 1 <= rank <= len(ranked_items):
                         selected_item = ranked_items[rank - 1]
                         if selected_item[3] == "Folder":
+                            history.append(directory_path)  # Save current directory to history
                             directory_path = os.path.join(directory_path, selected_item[0])
                         else:
                             print("Error: Selected item is not a folder.")
@@ -119,8 +121,15 @@ def main():
                         print("Error: Invalid rank number.")
                 except ValueError:
                     print("Error: Please enter a valid number.")
-            else:
+            elif dive_in == "b":
+                if len(history) > 1:
+                    directory_path = history.pop()  # Backtrack to the previous directory
+                else:
+                    print("You are already at the top-level directory.")
+            elif dive_in == "e":
                 break
+            else:
+                print("Invalid choice. Please enter 'd', 'b', or 'e'.")
         else:
             print("No items found in the directory or the path is invalid.")
             break
