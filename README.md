@@ -5,6 +5,7 @@ Welcome to my repository of simple Python scripts! This collection contains scri
 ## Index
 
 - [Rank Files by Size](#rank-files-by-size)
+- [Go Study Timer](#go-study-timer)
 
 ---
 
@@ -88,3 +89,26 @@ Summary:
 
 Total size of the directory: 46.53 MB
 ```
+
+### Go Study Timer
+
+**Script Name**: `go_study.py`
+
+This script creates a tray icon in the Windows system tray for managing study breaks. When the user selects a timer (15, 30, 45, or 60 minutes), the script waits for that duration and then displays a full-screen, topmost message instructing them to **"GO STUDY"**. The user must click a **"Yes"** button on the message to dismiss it.
+
+#### Features
+- **System Tray Integration**: Runs silently in the tray; no main window is visible.
+- **Quick Timer Options**: 15, 30, 45, 60 minutes.
+- **Intrusive Reminder**: Displays a full-screen popup to break through distractions (games, videos, etc.).
+- **Dismiss Option**: Simple “Yes” button dismisses the popup.
+
+#### How to Use
+1. Run the script:
+   ```bash
+   python go_study.py
+2. Look for the GoStudyTimer icon in your system tray.
+3. Right-click (or left-click) on the icon to open the menu, and choose a timer option.
+4. Once the timer expires, you will see a "GO STUDY" popup. Click "Yes" to dismiss.
+
+#### Executable
+A standalone executable (packaged via PyInstaller) is available in the applications folder. Double-clicking this .exe file starts the script without requiring a Python environment.
