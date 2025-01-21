@@ -76,7 +76,7 @@ class GoStudyApp:
         frame = ttk.Frame(popup)
         frame.pack(expand=True, fill="both")
 
-        label = ttk.Label(frame, text="GO STUDY", font=("Arial", 48, "bold"))
+        label = ttk.Label(frame, text="GO STUDY!", font=("Arial", 48, "bold"))
         label.pack(pady=50)
 
         yes_button = ttk.Button(frame, text="Yes", command=popup.destroy)
